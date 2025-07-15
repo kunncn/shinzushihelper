@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { dishes } from "../data/dishes";
+import dishes from "../data/dishes";
 import { Check, Copy } from "lucide-react"; // install lucide-react for icons
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const [copiedCode, setCopiedCode] = useState("");
+
+  console.log(dishes);
 
   const filteredDishes = dishes.filter((dish) =>
     dish.name.toLowerCase().includes(query.toLowerCase())
