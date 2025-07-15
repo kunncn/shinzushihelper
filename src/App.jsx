@@ -19,7 +19,9 @@ const App = () => {
 
     // Filter products based on whether their name includes the search term (case-insensitive)
     const results = products.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      `${product.name} ${product.code} ${product.price} ${product.detail}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
     );
     setFilteredProducts(results);
   }, [searchTerm]);
