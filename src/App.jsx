@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Search, Copy } from "lucide-react"; // Importing icons from lucide-react
 import products from "./data/products";
+import Logo from "./assets/logo.png";
 
 // Product data with codes, prices, and details extracted directly from the provided menu PDF
 
@@ -47,10 +48,11 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center p-4 sm:p-6 md:p-8 font-inter">
-      <div className="bg-white w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-200">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-6 text-center">
-          🍣 Shin Zushi Code Finder
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-4 sm:p-6 md:p-8 font-inter">
+      <div className="bg-gray-900 w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-700">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-6 text-center flex items-center justify-center gap-2">
+          <img src={Logo} alt="Logo" className="w-8 h-8 sm:w-10 sm:h-10" />
+          Shin Zushi Code Finder
         </h1>
 
         {/* Search Input */}
@@ -62,7 +64,7 @@ const App = () => {
           <input
             type="text"
             placeholder="Search for sushi, sashimi, or dish..."
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-800 placeholder-gray-500 text-sm sm:text-base"
+            className="w-full pl-10 pr-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-sm sm:text-base"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -70,7 +72,7 @@ const App = () => {
 
         {/* Copy Status Message */}
         {copyStatus && (
-          <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg text-center font-medium shadow-sm text-sm">
+          <div className="mb-4 p-3 bg-green-800 text-green-300 rounded-lg text-center font-medium shadow-sm text-sm">
             {copyStatus}
           </div>
         )}
@@ -82,25 +84,25 @@ const App = () => {
               {filteredProducts.map((product) => (
                 <li
                   key={product.name + product.code}
-                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-100 hover:bg-gray-100 transition duration-200 group"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-700 hover:bg-gray-700 transition duration-200 group"
                 >
                   <div className="flex flex-col text-left">
-                    <span className="font-semibold text-gray-800 text-base sm:text-lg">
+                    <span className="font-semibold text-white text-base sm:text-lg">
                       {product.name}
                     </span>
-                    <span className="text-gray-600 text-sm">
+                    <span className="text-gray-400 text-sm">
                       Code:{" "}
-                      <span className="font-mono text-blue-700">
+                      <span className="font-mono text-blue-400">
                         {product.code}
                       </span>
                     </span>
-                    <span className="text-gray-600 text-sm">
+                    <span className="text-gray-400 text-sm">
                       Price:{" "}
-                      <span className="font-mono text-green-700">
+                      <span className="font-mono text-green-400">
                         RM {product.price}
                       </span>
                     </span>
-                    <span className="text-gray-600 text-xs italic">
+                    <span className="text-gray-500 text-xs italic">
                       {product.detail}
                     </span>
                   </div>
@@ -115,11 +117,11 @@ const App = () => {
               ))}
             </ul>
           ) : searchTerm.trim() !== "" ? (
-            <p className="text-center text-gray-500 py-6">
+            <p className="text-center text-gray-400 py-6">
               No products found matching "{searchTerm}".
             </p>
           ) : (
-            <p className="text-center text-gray-500 py-6">
+            <p className="text-center text-gray-400 py-6">
               Start typing to search for products!
             </p>
           )}
