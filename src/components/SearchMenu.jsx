@@ -61,9 +61,9 @@ const SearchMenu = () => {
             </p>
             <button
               onClick={toggleSortOrder}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition"
+              className="bg-blue-600 text-sm hover:bg-blue-700 text-white px-3 py-1 rounded-md transition"
             >
-              Price : {sortOrder === "asc" ? "Low to High" : "High to Low"}
+              Price : {sortOrder === "asc" ? "High to Low" : "Low to High"}
             </button>
           </div>
         )}
