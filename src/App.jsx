@@ -3,6 +3,7 @@ import { Search, Copy } from "lucide-react"; // Importing icons from lucide-reac
 import products from "./data/products";
 import Logo from "./assets/logo.png";
 import SearchMenu from "./components/SearchMenu";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 // Product data with codes, prices, and details extracted directly from the provided menu PDF
 
@@ -65,6 +66,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gray-950 px-4 py-6 sm:px-6 md:px-8">
       <SearchMenu />
+      <ScrollToTopButton />
     </div>
   );
 };
