@@ -37,11 +37,13 @@ const SearchMenu = () => {
   return (
     <div className="min-h-screen px-4 py-6 bg-gray-950 text-gray-200">
       <div className="max-w-4xl mx-auto">
+        {/* Header */}
         <div className="flex flex-wrap justify-center items-center gap-2 mb-6">
-          <img src={Logo} className="h-10 w-auto" alt="Logo" />
+          <img src={Logo} alt="Logo" className="h-10 w-auto" />
           <h1 className="text-2xl font-bold text-white">Shin Zushi Menu</h1>
         </div>
 
+        {/* Search Box */}
         <input
           type="text"
           value={searchTerm}
@@ -50,13 +52,13 @@ const SearchMenu = () => {
           className="w-full p-3 border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 bg-gray-800 text-white"
         />
 
+        {/* Sort and Result Count */}
         {filteredProducts.length > 0 && (
           <div className="flex justify-between items-center mb-4 text-sm">
-            <p className="inline-block bg-blue-900 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full shadow">
+            <p className="bg-blue-900 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full shadow">
               Showing {filteredProducts.length} result
               {filteredProducts.length > 1 ? "s" : ""}
             </p>
-
             <button
               onClick={toggleSortOrder}
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition"
@@ -66,6 +68,7 @@ const SearchMenu = () => {
           </div>
         )}
 
+        {/* Product List */}
         <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {filteredProducts.map((product) => (
             <li
@@ -78,7 +81,7 @@ const SearchMenu = () => {
                   onClick={() => handleCopy(product.code)}
                   className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded-md transition"
                 >
-                  {copiedCode === product.code ? "Copied!" : "Copy"}
+                    Copy
                 </button>
               </div>
               <p className="text-sm text-gray-400">{product.code}</p>
@@ -90,14 +93,15 @@ const SearchMenu = () => {
           ))}
         </ul>
 
+        {/* No result found */}
         {filteredProducts.length === 0 && searchTerm && (
           <p className="text-center text-gray-400 mt-6">No results found.</p>
         )}
       </div>
 
-      {/* Custom Alert */}
+      {/* Copy Alert */}
       {showAlert && (
-        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-md shadow-md transition-opacity duration-500 animate-fade">
+        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-md shadow-md transition-opacity duration-500">
           ✅ Code copied!
         </div>
       )}

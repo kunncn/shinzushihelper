@@ -63,9 +63,9 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-950 px-4 py-6 sm:px-6 md:px-8">
       <SearchMenu />
-    </>
+    </div>
   );
 };
 
