@@ -10,24 +10,38 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State to store the search input
   const [filteredProducts, setFilteredProducts] = useState([]); // State to store filtered products
   const [copyStatus, setCopyStatus] = useState(""); // State to show copy feedback
+  const [sortOrder, setSortOrder] = useState("asc"); // "asc" or "desc"
 
-  // Effect to filter products whenever the search term changes
+  // filter function
   useEffect(() => {
     if (searchTerm.trim() === "") {
-      setFilteredProducts([]); // Clear results if search bar is empty
+      setFilteredProducts([]);
       return;
     }
 
-    // Filter products based on whether their name includes the search term (case-insensitive)
-    const results = products.filter((product) =>
-      `${product.name} ${product.code} ${product.price} ${product.detail}`
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase())
-    );
-    setFilteredProducts(results);
-  }, [searchTerm]);
+    const searchWords = searchTerm.toLowerCase().split(" ");
+    const isAllNumbers = searchWords.every((w) => !isNaN(Number(w)));
 
-  // Function to copy the product code to the clipboard
+    let results = products.filter((product) => {
+      if (isAllNumbers) {
+        return searchWords.some((num) => product.price <= Number(num));
+      } else {
+        const nameWords = product.name.toLowerCase().split(/\s+/);
+        return searchWords.every((word) => nameWords.includes(word));
+      }
+    });
+
+    // if number search, sort results
+    if (isAllNumbers) {
+      results.sort((a, b) =>
+        sortOrder === "asc" ? a.price - b.price : b.price - a.price
+      );
+    }
+
+    setFilteredProducts(results);
+  }, [searchTerm, sortOrder]);
+
+  // copy function
   const copyToClipboard = (code) => {
     try {
       // Create a temporary input element to hold the text
@@ -70,10 +84,36 @@ const App = () => {
           />
         </div>
 
+        {/* 🔻 Add sort buttons here */}
+        {searchTerm.trim() !== "" &&
+          !isNaN(Number(searchTerm.trim().split(" ")[0])) && (
+            <div className="flex justify-end mb-4 gap-2 text-sm">
+              <button
+                onClick={() =>
+                  setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
+                }
+                className="px-3 py-1 rounded-full bg-gray-700 text-white mb-4"
+              >
+                Sort by Price (
+                {sortOrder === "asc" ? "Low to High" : "High to Low"})
+              </button>
+            </div>
+          )}
+
         {/* Copy Status Message */}
         {copyStatus && (
           <div className="mb-4 p-3 bg-green-800 text-green-300 rounded-lg text-center font-medium shadow-sm text-sm">
             {copyStatus}
+          </div>
+        )}
+
+        {/* Results Count Badge */}
+        {searchTerm.trim() !== "" && (
+          <div className="mb-4 text-center">
+            <span className="inline-block bg-blue-700 text-white text-xs sm:text-sm font-semibold px-3 py-1 rounded-full shadow-md">
+              {filteredProducts.length} result
+              {filteredProducts.length !== 1 && "s"} found
+            </span>
           </div>
         )}
 
