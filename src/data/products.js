@@ -447,6 +447,7 @@ const products = [
   {
     name: "Torched Spider Maki",
     code: "S98",
+    recommended: true,
     price: 10.5,
     detail: "Spicy soft shell crab roll topped ebiko & spicy sauce",
   },
@@ -484,6 +485,7 @@ const products = [
   {
     name: "Torched Salmon Mentaiko ",
     code: "S104",
+    recommended: true,
     price: 11,
     detail: "Roasted salmon w/ cod fish & salmon roe",
   },
@@ -730,18 +732,20 @@ const products = [
   {
     name: "Aburi Moriawase Sushi",
     code: "S118",
+    recommended: true,
     price: 13,
     detail: "Mixed 3 torched sushi, 3 gunkan & eel",
   },
   {
-    name: "Salmon Haru Hana (Platter)",
+    name: "Salmon Haru Hana",
     code: "S119",
     price: 14,
     detail: "Torched salmon w/ honey lemon & salmon sushi roll",
   },
   {
-    name: "Kuruma Santen Nigiri (Platter)",
+    name: "Kuruma Santen Nigiri",
     code: "S120",
+    recommended: true,
     price: 7.8,
     detail:
       "Mixed 3 kind tiger prawn sushi, topped cod fish roe, spicy sauce, mango",
@@ -753,52 +757,52 @@ const products = [
     detail: "Mixed 3 torched tuna, white tuna & eel topped special beef sauce",
   },
   {
-    name: "Aki Nigiri (Platter)",
+    name: "Aki Nigiri",
     code: "S122",
     price: 11,
     detail: "Tuna, white tuna, salmon, sweet omelette & snow crab",
   },
   {
-    name: "Tokubetsu Sushi (Platter)",
+    name: "Tokubetsu Sushi",
     code: "S123",
     price: 12.8,
     detail: "Mixed 9 torched sushi nigiri",
   },
   {
-    name: "Salmon Natsu Sushi (Platter)",
+    name: "Salmon Natsu Sushi",
     code: "S124",
     price: 25,
     detail: "3 salmon sashimi, 3 salmon belly nigiri & salmon thin roll",
   },
   {
-    name: "Shin Mentai Sushi (Platter)",
+    name: "Shin Mentai Sushi",
     code: "S125",
-
+    recommended: true,
     price: 15.5,
     detail: "Torched 2 salmon, 2 sweet omelette, 2 eel with mentaiko",
   },
   {
-    name: "Shin Roasted Salmon (Platter)",
+    name: "Shin Roasted Salmon",
     code: "S126",
-
+    recommended: true,
     price: 12,
     detail: "Mixed 3 torched salmon",
   },
   {
-    name: "Take Nigiri (Platter)",
+    name: "Take Nigiri",
     code: "S127",
     price: 25,
     detail:
       "Tuna, white tuna, salmon, salmon belly, hotate, tako, ika, tiger prawn & omelette",
   },
   {
-    name: "Salmon Aburi Hana Sushi (Platter)",
+    name: "Salmon Aburi Hana Sushi",
     code: "S128",
     price: 12,
     detail: "Torched salmon nigiri & salmon roll",
   },
   {
-    name: "Sushi Moriawase (Platter)",
+    name: "Sushi Moriawase",
     code: "S129",
     price: 14.5,
     detail: "5 fried maki sushi & 1 tako gunkan & 1 tobiko gunkan",
@@ -961,6 +965,7 @@ const products = [
   {
     name: "Age Ebi Gyoza ",
     code: "KA06",
+    recommended: true,
     price: 9,
     detail: "Fried marinated minced shrimp dumpling w/ sweet & spicy sauce",
   },
@@ -1001,6 +1006,7 @@ const products = [
   {
     name: "Shin Tokubetsu Steak",
     code: "KY02",
+    recommended: true,
     price: 27,
     detail:
       "Pan-fried Australian sirloin beef steak in Shin style toban-yaki sauce",
@@ -1026,6 +1032,7 @@ const products = [
   {
     name: "Salmon Mentaiyaki ",
     code: "KY07",
+    recommended: true,
     price: 19.5,
     detail: "Grilled salmon (120g) topped cod fish roe",
   },
@@ -1063,6 +1070,8 @@ const products = [
   {
     name: "Salmon Teppanyaki ",
     code: "KN01",
+    recommended: true,
+
     price: 22,
     detail: "Pan-fried salmon (120g) & large slice butter sauce",
   },
@@ -1075,6 +1084,7 @@ const products = [
   {
     name: "Salmon Hana Yuan-Yaki ",
     code: "KN03",
+    recommended: true,
     price: 17,
     detail: "Pan-fried salmon belly with lemon soy sauce",
   },
