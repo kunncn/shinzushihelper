@@ -70,9 +70,9 @@ const SearchMenu = () => {
 
         {/* Product List */}
         <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredProducts.map((product) => (
+          {filteredProducts.map((product, idx) => (
             <li
-              key={product.code}
+              key={idx}
               className="bg-gray-900 p-4 rounded-xl shadow hover:shadow-lg transition"
             >
               <div className="flex justify-between items-start gap-2 mb-1">
@@ -81,7 +81,7 @@ const SearchMenu = () => {
                   onClick={() => handleCopy(product.code)}
                   className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded-md transition"
                 >
-                    Copy
+                  Copy
                 </button>
               </div>
               <p className="text-sm text-gray-400">{product.code}</p>
