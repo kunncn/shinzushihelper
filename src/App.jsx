@@ -13,35 +13,77 @@ const App = () => {
   const [filteredProducts, setFilteredProducts] = useState([]); // State to store filtered products
   const [copyStatus, setCopyStatus] = useState(""); // State to show copy feedback
   const [sortOrder, setSortOrder] = useState("asc"); // "asc" or "desc"
+  const [activeTab, setActiveTab] = useState("recommended");
+  const categories = [
+    "recommended",
+    "rice-soup",
+    "maki",
+    "noodles",
+    "set-meal",
+    "donburi",
+    "teppanyaki",
+    "grilled-dishes",
+    "sushi-moriawase",
+    "gunkan-inari",
+    "aburi-sushi",
+    "nigiri-zushi",
+    "sashimi-moriawase",
+    "sashimi",
+    "hand-rolled",
+    "salad",
+    "appetizer",
+  ]; // Add your own
+
+  <ul className="flex gap-2 flex-wrap mb-4">
+    {categories.map((cat) => (
+      <li key={cat}>
+        <button
+          onClick={() => setActiveTab(cat)}
+          className={`px-3 py-1 rounded-md capitalize ${
+            activeTab === cat
+              ? "bg-blue-600 text-white"
+              : "bg-gray-700 text-gray-300"
+          }`}
+        >
+          {cat.replace("-", " ")}
+        </button>
+      </li>
+    ))}
+  </ul>;
 
   // filter function
   useEffect(() => {
-    if (searchTerm.trim() === "") {
-      setFilteredProducts([]);
-      return;
-    }
+    if (searchTerm.trim() !== "") {
+      const searchWords = searchTerm.toLowerCase().split(" ");
+      const isAllNumbers = searchWords.every((w) => !isNaN(Number(w)));
 
-    const searchWords = searchTerm.toLowerCase().split(" ");
-    const isAllNumbers = searchWords.every((w) => !isNaN(Number(w)));
+      let results = products.filter((product) => {
+        if (isAllNumbers) {
+          return searchWords.some((num) => product.price <= Number(num));
+        } else {
+          const nameWords = product.name.toLowerCase().split(/\s+/);
+          return searchWords.every((word) => nameWords.includes(word));
+        }
+      });
 
-    let results = products.filter((product) => {
       if (isAllNumbers) {
-        return searchWords.some((num) => product.price <= Number(num));
-      } else {
-        const nameWords = product.name.toLowerCase().split(/\s+/);
-        return searchWords.every((word) => nameWords.includes(word));
+        results.sort((a, b) =>
+          sortOrder === "asc" ? a.price - b.price : b.price - a.price
+        );
       }
-    });
 
-    // if number search, sort results
-    if (isAllNumbers) {
-      results.sort((a, b) =>
-        sortOrder === "asc" ? a.price - b.price : b.price - a.price
-      );
+      setFilteredProducts(results);
+    } else {
+      // Tab filter when no search term
+      const filtered =
+        activeTab === "recommended"
+          ? products.filter((p) => p.recommended)
+          : products.filter((p) => p.category === activeTab);
+      console.log(filtered);
+
+      setFilteredProducts(filtered);
     }
-
-    setFilteredProducts(results);
-  }, [searchTerm, sortOrder]);
+  }, [searchTerm, sortOrder, activeTab]);
 
   // copy function
   const copyToClipboard = (code) => {
@@ -65,7 +107,24 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-gray-950 px-4 py-6 sm:px-6 md:px-8">
-      <SearchMenu />
+      <ul className="flex gap-2 flex-wrap mb-4">
+        {categories.map((cat) => (
+          <li key={cat}>
+            <button
+              onClick={() => setActiveTab(cat)}
+              className={`px-3 py-1 rounded-md capitalize ${
+                activeTab === cat
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-700 text-gray-300"
+              }`}
+            >
+              {cat.replace("-", " ")}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <SearchMenu activeTab={activeTab} />
+
       <ScrollToTopButton />
     </div>
   );

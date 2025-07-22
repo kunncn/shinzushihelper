@@ -3,27 +3,46 @@ import products from "../data/products";
 import { filterProducts, sortProducts } from "../utils/searchUtils";
 import Logo from "../assets/logo.png";
 
-const SearchMenu = () => {
+const SearchMenu = ({ activeTab }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
   const [copiedCode, setCopiedCode] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  console.log(activeTab);
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
   }, []);
 
   useEffect(() => {
-    const result = filterProducts(products, searchTerm);
+    let result = [];
 
-    if (result === "no-result") {
-      setFilteredProducts([]);
+    if (searchTerm.trim() === "") {
+      // If no search, show all by category
+      if (activeTab === "recommended") {
+        result = products.filter((p) => p.recommended);
+      } else {
+        result = products.filter((p) => p.category === activeTab);
+      }
     } else {
-      const sorted = sortProducts(result, sortOrder);
-      setFilteredProducts(sorted);
+      // If searching, filter by name or price
+      result = filterProducts(products, searchTerm);
+      if (result === "no-result") {
+        setFilteredProducts([]);
+        return;
+      }
+
+      if (activeTab === "recommended") {
+        result = result.filter((p) => p.recommended);
+      } else {
+        result = result.filter((p) => p.category === activeTab);
+      }
     }
-  }, [searchTerm, sortOrder]);
+
+    const sorted = sortProducts(result, sortOrder);
+    setFilteredProducts(sorted);
+  }, [searchTerm, sortOrder, activeTab]);
 
   const toggleSortOrder = () => {
     setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
