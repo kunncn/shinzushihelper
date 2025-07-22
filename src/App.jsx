@@ -79,7 +79,7 @@ const App = () => {
         activeTab === "recommended"
           ? products.filter((p) => p.recommended)
           : products.filter((p) => p.category === activeTab);
-      console.log(filtered);
+      filtered;
 
       setFilteredProducts(filtered);
     }
@@ -107,22 +107,26 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-gray-950 px-4 py-6 sm:px-6 md:px-8">
-      <ul className="flex gap-2 flex-wrap mb-4">
-        {categories.map((cat) => (
-          <li key={cat}>
-            <button
-              onClick={() => setActiveTab(cat)}
-              className={`px-3 py-1 rounded-md capitalize ${
-                activeTab === cat
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-700 text-gray-300"
-              }`}
-            >
-              {cat.replace("-", " ")}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="overflow-x-auto -mx-4 px-4 scrollbar-hide">
+        <ul className="flex gap-2 w-max mb-4">
+          {categories.map((cat) => (
+            <li key={cat}>
+              <button
+                onClick={() => setActiveTab(cat)}
+                className={`px-4 py-2 rounded-full text-sm font-medium capitalize transition-all duration-200
+            ${
+              activeTab === cat
+                ? "bg-blue-600 text-white shadow-md scale-105"
+                : "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white"
+            }`}
+              >
+                {cat.replace("-", " ")}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <SearchMenu activeTab={activeTab} />
 
       <ScrollToTopButton />

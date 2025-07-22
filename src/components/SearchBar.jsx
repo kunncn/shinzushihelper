@@ -6,7 +6,6 @@ export default function SearchBar() {
   const [query, setQuery] = useState("");
   const [copiedCode, setCopiedCode] = useState("");
 
-  console.log(dishes);
 
   const filteredDishes = dishes.filter((dish) =>
     dish.name.toLowerCase().includes(query.toLowerCase())

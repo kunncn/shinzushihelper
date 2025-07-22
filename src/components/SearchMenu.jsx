@@ -9,7 +9,6 @@ const SearchMenu = ({ activeTab }) => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [copiedCode, setCopiedCode] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  console.log(activeTab);
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
