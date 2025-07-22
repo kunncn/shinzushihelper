@@ -734,7 +734,7 @@ const products = [
     code: "S118",
     recommended: true,
     price: 13,
-    detail: "Mixed 3 torched sushi, 3 gunkan & eel",
+    detail: "Mixed 5 torched sushi, 3 salmon, tiger prawn & eel",
   },
   {
     name: "Salmon Haru Hana",
