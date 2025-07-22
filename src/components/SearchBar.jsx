@@ -15,7 +15,7 @@ export default function SearchBar() {
   const handleCopy = (code) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
-    setTimeout(() => setCopiedCode(""), 2000);
+    setTimeout(() => setCopiedCode(""), 3000);
   };
 
   return (

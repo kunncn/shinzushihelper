@@ -36,7 +36,7 @@ const SearchMenu = () => {
     setTimeout(() => {
       setShowAlert(false);
       setCopiedCode("");
-    }, 1200);
+    }, 2000);
   };
 
   return (

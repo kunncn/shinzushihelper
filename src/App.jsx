@@ -55,11 +55,11 @@ const App = () => {
       document.body.removeChild(tempInput); // Remove the temporary input
 
       setCopyStatus(`'${code}' copied!`); // Set success message
-      setTimeout(() => setCopyStatus(""), 2000); // Clear message after 2 seconds
+      setTimeout(() => setCopyStatus(""), 3000); // Clear message after 2 seconds
     } catch (err) {
       console.error("Failed to copy text: ", err);
       setCopyStatus("Failed to copy."); // Set error message
-      setTimeout(() => setCopyStatus(""), 2000); // Clear message after 2 seconds
+      setTimeout(() => setCopyStatus(""), 3000); // Clear message after 2 seconds
     }
   };
 
