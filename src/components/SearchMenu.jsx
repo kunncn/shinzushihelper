@@ -16,8 +16,13 @@ const SearchMenu = () => {
 
   useEffect(() => {
     const result = filterProducts(products, searchTerm);
-    const sorted = sortProducts(result, sortOrder);
-    setFilteredProducts(sorted);
+
+    if (result === "no-result") {
+      setFilteredProducts([]);
+    } else {
+      const sorted = sortProducts(result, sortOrder);
+      setFilteredProducts(sorted);
+    }
   }, [searchTerm, sortOrder]);
 
   const toggleSortOrder = () => {
@@ -56,7 +61,7 @@ const SearchMenu = () => {
         {filteredProducts.length > 0 && (
           <div className="flex justify-between items-center mb-4 text-sm">
             <p className="bg-blue-900 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full shadow">
-              Showing {filteredProducts.length} result
+              {filteredProducts.length} result
               {filteredProducts.length > 1 ? "s" : ""}
             </p>
             <button
