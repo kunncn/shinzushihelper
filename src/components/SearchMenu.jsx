@@ -73,27 +73,38 @@ const SearchMenu = () => {
           </div>
         )}
 
-        {/* Product List */}
-        <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {filteredProducts.map((product, idx) => (
             <li
               key={idx}
-              className="bg-gray-900 p-4 rounded-xl shadow hover:shadow-lg transition"
+              className="bg-gray-900 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all"
             >
-              <div className="flex justify-between items-start gap-2 mb-1">
-                <p className="text-lg font-semibold">{product.name}</p>
-                <button
-                  onClick={() => handleCopy(product.code)}
-                  className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded-md transition"
-                >
-                  Copy
-                </button>
+              <div className="w-full h-48 overflow-hidden">
+                <img
+                  src={`/images/${product.code}.jpg`}
+                  alt={product.name}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  // onError={(e) => (e.currentTarget.src = "/images/default.jpg")}
+                />
               </div>
-              <p className="text-sm text-gray-400">{product.code}</p>
-              <p className="text-blue-400 font-bold">RM {product.price}</p>
-              <p className="text-sm text-gray-300 mt-1">
-                {product.detail || "No detail"}
-              </p>
+
+              <div className="p-4 space-y-2">
+                <div className="flex justify-between items-start gap-2">
+                  <p className="text-lg font-bold text-white">{product.name}</p>
+                  <button
+                    onClick={() => handleCopy(product.code)}
+                    className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded-md transition"
+                  >
+                    Copy
+                  </button>
+                </div>
+
+                <p className="text-sm text-gray-400">{product.code}</p>
+                <p className="text-blue-400 font-bold">RM {product.price}</p>
+                <p className="text-sm text-gray-300">
+                  {product.detail || "No detail"}
+                </p>
+              </div>
             </li>
           ))}
         </ul>

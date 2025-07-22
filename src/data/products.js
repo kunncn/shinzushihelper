@@ -477,13 +477,13 @@ const products = [
     detail: "Roasted salmon w/ honeylemon sauce",
   },
   {
-    name: "Torched Salmon Cheese ",
+    name: "Torched Salmon Cheese",
     code: "S103",
     price: 9,
     detail: "Roasted salmon w/ cheese",
   },
   {
-    name: "Torched Salmon Mentaiko ",
+    name: "Torched Salmon Mentaiko",
     code: "S104",
     recommended: true,
     price: 11,
